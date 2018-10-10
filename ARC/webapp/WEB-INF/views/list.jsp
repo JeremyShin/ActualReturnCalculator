@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Title</title>
-    <style>
+<%--    <style>
         table {
             width: 80%;
         }
@@ -20,7 +20,7 @@
             margin: auto;
             text-align: center;
         }
-    </style>
+    </style>--%>
 </head>
 <body>
 <h1>투자 리스트</h1>
@@ -31,8 +31,12 @@
     <%--<a href="/logout">관리자 로그아웃</a>--%>
 <%--</c:if>--%>
 <br><br>
+<br><br>
+<c:forEach items="${requestScope.myGoodsLilst}" var="myGoodsList">
+    ${myGoodsList.goodsName}<br>
 
-<table  >
+</c:forEach>
+<%--<table  >
     <thead>
     <tr>
         <th valign="middle">번호</th>
@@ -61,7 +65,7 @@
 
         </tr>
     </c:forEach>
-</table>
+</table>--%>
 
 </body>
 </html>

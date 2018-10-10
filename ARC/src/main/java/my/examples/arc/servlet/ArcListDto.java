@@ -1,6 +1,6 @@
 package my.examples.arc.servlet;
 
-public class ArcDto {
+public class ArcListDto {
     private String gdsNm;
     private int investPeriod;
     private Long prfRto;
@@ -12,10 +12,10 @@ public class ArcDto {
     private int gdsCd;
     private double investPrice;
 
-    public ArcDto() {
+    public ArcListDto() {
     }
 
-    public ArcDto(String gdsNm, int investPeriod, Long prfRto, int myPrice) {
+    public ArcListDto(String gdsNm, int investPeriod, Long prfRto, int myPrice) {
         this.gdsNm = gdsNm;
         this.investPeriod = investPeriod;
         this.prfRto = prfRto;
