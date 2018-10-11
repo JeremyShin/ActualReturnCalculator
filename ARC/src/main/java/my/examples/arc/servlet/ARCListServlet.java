@@ -1,6 +1,7 @@
 package my.examples.arc.servlet;
 
-import my.examples.arc.dao.ArcDao;
+import my.examples.arc.dao.ArcDAO;
+import my.examples.arc.dto.ArcListDTO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,11 +18,8 @@ public class ARCListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ArcDao arcDao = new ArcDao();
-
-        List<ArcListDto> list = arcDao.getArcDtoList();
-
-        System.out.println(list.size());
+        ArcDAO arcDao = new ArcDAO();
+        List<ArcListDTO> list = arcDao.getArcDtoList();
 
         // req.setAttribute  request에 list 저장
         req.setAttribute("myGoodsList", list);

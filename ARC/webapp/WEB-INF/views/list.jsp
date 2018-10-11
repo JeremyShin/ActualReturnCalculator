@@ -11,61 +11,13 @@
 <html>
 <head>
     <title>Title</title>
-<%--    <style>
-        table {
-            width: 80%;
-        }
-        table, th, td {
-            border: 1px solid #bcbcbc;
-            margin: auto;
-            text-align: center;
-        }
-    </style>--%>
 </head>
 <body>
 <h1>투자 리스트</h1>
-<%--<c:if test="${sessionScope.admin != 'true'}">--%>
-    <%--<a href="/login">관리자 로그인</a>--%>
-<%--</c:if>--%>
-<%--<c:if test="${sessionScope.admin == 'true'}">--%>
-    <%--<a href="/logout">관리자 로그아웃</a>--%>
-<%--</c:if>--%>
-<br><br>
-<br><br>
-<c:forEach items="${requestScope.myGoodsLilst}" var="myGoodsList">
-    ${myGoodsList.goodsName}<br>
-
+<c:forEach items="${requestScope.myGoodsList}" var="goodslist">
+    ${goodslist.goodsName}<br>
+    ${goodslist.profitRatio}<br>
 </c:forEach>
-<%--<table  >
-    <thead>
-    <tr>
-        <th valign="middle">번호</th>
-        <th valign="middle">상품명</th>
-        <th valign="middle">기간</th>
-        <th valign="middle">투자금액</th>
-        <th valign="middle">수익률(세전)</th>
-        <th valign="middle">수익금(세전)</th>
-        <th valign="middle">세금</th>
-        <th valign="middle">수수료</th>
-        <th valign="middle">예상 총 수익금</th>
-    </tr>
-    </thead>
-
-    <c:forEach items="${requestScope.myGoodsList}" var="myGoodsList">
-        <tr>
-            <td valign="middle">${myGoodsList.rownum}</td>
-            <td valign="middle">${myGoodsList.goodsName}</td>
-            <td valign="middle">${myGoodsList.investPeriod}</td>
-            <td valign="middle">${myGoodsList.myPrice}</td>
-            <td valign="middle">${myGoodsList.prfRto}</td>
-            <td valign="middle">${myGoodsList.profits}</td>
-            <td valign="middle">8%</td>
-            <td valign="middle">${myGoodsList.cms}</td>
-            <td valign="middle"><fmt:formatNumber value="${ myGoodsList.profits-(myGoodsList.profits*(myGoodsList.cms+8)/100) }" pattern="0.00"/></td>
-
-        </tr>
-    </c:forEach>
-</table>--%>
 
 </body>
 </html>
