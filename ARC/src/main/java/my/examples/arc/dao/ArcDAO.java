@@ -2,7 +2,6 @@ package my.examples.arc.dao;
 
 import my.examples.arc.dto.ArcListDTO;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -58,5 +57,35 @@ public class ArcDAO {
             DbUtil.close(conn, ps, rs);
         }
         return list;
+    }
+
+    public int login(String id, String password) {
+        Connection conn;
+        PreparedStatement ps;
+        ResultSet rs;
+
+
+        try{
+            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo");
+            Properties properties= new Properties();
+            properties.load(in);
+
+            String url = String.format("jdbc:mysql://%s/%s",properties.getProperty("host"), properties.getProperty("database"));
+
+            conn = DbUtil.connect(url, properties);
+            String sql = "SELECT id FROM member WHERE id = ?";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                if(rs.getString(1).equals(password)){
+                    return 1; //로그인성공.
+                }else return 0; //비밀번호틀림
+            }
+            return -1; //아이디없음.
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return -2; //DB오류.
     }
 }

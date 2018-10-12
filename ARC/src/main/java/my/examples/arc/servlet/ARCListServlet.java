@@ -15,7 +15,6 @@ import java.util.List;
 @WebServlet("/list")
 public class ARCListServlet extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ArcDAO arcDao = new ArcDAO();
