@@ -3,6 +3,7 @@ package my.examples.arc.dao;
 import my.examples.arc.dto.ArcGdsAddDto;
 import my.examples.arc.dto.ArcListDTO;
 import my.examples.arc.dto.ArcWriteDto;
+import my.examples.arc.dao.DbUtil;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -63,7 +64,8 @@ public class ArcDAO {
 
 
     public int login(String id, String password) {
-        Connection conn = null;
+        Connection conn =null;
+
         PreparedStatement ps;
         ResultSet rs;
         try{
