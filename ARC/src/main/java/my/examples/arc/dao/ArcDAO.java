@@ -1,6 +1,8 @@
 package my.examples.arc.dao;
 
+import my.examples.arc.dto.ArcGdsAddDto;
 import my.examples.arc.dto.ArcListDTO;
+import my.examples.arc.dto.ArcWriteDto;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -59,11 +61,58 @@ public class ArcDAO {
         return list;
     }
 
+
     public int login(String id, String password) {
         Connection conn;
         PreparedStatement ps;
         ResultSet rs;
+        String sql = "SELECT id FROM member WHERE id = ?";
+        ps = conn.prepareStatement(sql);
+        rs = ps.executeQuery();
+        try{
+        if (rs.next()) {
+          if(rs.getString(1).equals(password)){
+            return 1; //로그인성공.
+            }else return 0; //비밀번호틀림
+          }
+            return -1; //아이디없음.
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return -2; //DB오류.
+      }
 
+    public int addArc(ArcGdsAddDto arcGdsAddDto){
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try{
+            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo");
+            Properties properties= new Properties();
+            properties.load(in);
+
+            String url = String.format("jdbc:mysql://%s/%s",properties.getProperty("host"), properties.getProperty("database"));
+
+            conn = DbUtil.connect(url, properties);
+
+            String sql = "insert into inv_gds_lst(igl_idx, gds_cd, prf_rto, cms) values (null, ?, ?, ?)";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, arcGdsAddDto.getGdsCd());
+            ps.setLong(2, arcGdsAddDto.getPrfRto());
+            ps.setFloat(3, arcGdsAddDto.getCms());
+            count = ps.executeUpdate();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            DbUtil.close(conn,ps);
+        }
+        return count;
+    }
+
+    public int writeArc(ArcWriteDto arcWriteDto){
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement ps = null;
 
         try{
             InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo");
@@ -73,19 +122,21 @@ public class ArcDAO {
             String url = String.format("jdbc:mysql://%s/%s",properties.getProperty("host"), properties.getProperty("database"));
 
             conn = DbUtil.connect(url, properties);
-            String sql = "SELECT id FROM member WHERE id = ?";
+          
+            String sql = "insert into my_inv_lst(my_idx, id, gds_cd, inv_prod, my_inv_prc) values (null, ?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
 
-            if (rs.next()) {
-                if(rs.getString(1).equals(password)){
-                    return 1; //로그인성공.
-                }else return 0; //비밀번호틀림
-            }
-            return -1; //아이디없음.
-        }catch (Exception ex) {
+            ps.setString(1, arcWriteDto.getId());
+            ps.setInt(2, arcWriteDto.getGdsCd());
+            ps.setInt(3, arcWriteDto.getInvestPeriod());
+            ps.setDouble(4, arcWriteDto.getInvestPrice());
+
+            count = ps.executeUpdate();
+        }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            DbUtil.close(conn,ps);
         }
-        return -2; //DB오류.
+        return count;
     }
 }
