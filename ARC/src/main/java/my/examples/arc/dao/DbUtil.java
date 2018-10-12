@@ -11,7 +11,7 @@ public class DbUtil {
     private String database;
     private String user;
     private String password;
-    File file = new File("ARC/out/MysqlInfo");
+    File file = new File("ARC/out/MysqlInfo.secure");
 
     public void DbUtil() {
     }
