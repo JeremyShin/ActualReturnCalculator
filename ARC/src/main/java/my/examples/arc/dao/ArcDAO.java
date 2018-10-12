@@ -63,13 +63,14 @@ public class ArcDAO {
 
 
     public int login(String id, String password) {
-        Connection conn;
+        Connection conn = null;
         PreparedStatement ps;
         ResultSet rs;
+        try{
         String sql = "SELECT id FROM member WHERE id = ?";
         ps = conn.prepareStatement(sql);
         rs = ps.executeQuery();
-        try{
+
         if (rs.next()) {
           if(rs.getString(1).equals(password)){
             return 1; //로그인성공.
