@@ -6,16 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2f7749d-2df6-4827-ab40-1aac38734349" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ARC/src/main/java/my/examples/arc/dto/ArcLoginDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ARC/src/main/java/my/examples/arc/servlet/ARCLoginServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ARC/webapp/WEB-INF/views/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ARC/arc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ARC/arc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ARC/src/main/java/my/examples/arc/dao/ArcDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/ARC/src/main/java/my/examples/arc/dao/ArcDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ARC/src/main/java/my/examples/arc/servlet/ARCListServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/ARC/src/main/java/my/examples/arc/servlet/ARCListServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ARC/webapp/WEB-INF/views/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ARC/webapp/WEB-INF/views/list.jsp" afterDir="false" />
-    </list>
+    <list default="true" id="b2f7749d-2df6-4827-ab40-1aac38734349" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/ARC/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -390,6 +381,14 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ActualReturnCalculator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ActualReturnCalculator" type="462c0819:PsiDirectoryNode" />
+              <item name="ARC" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -633,7 +632,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="960" y="28" width="960" height="1018" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30676857" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
