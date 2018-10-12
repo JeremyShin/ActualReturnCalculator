@@ -58,7 +58,7 @@ cmake-build-release/
 
 # IntelliJ
 out/
-ARC/src/resources
+ARC/src/main/resources
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
