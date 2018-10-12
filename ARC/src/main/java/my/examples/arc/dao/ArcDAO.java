@@ -24,7 +24,7 @@ public class ArcDAO {
 
         try {
 
-            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo");
+            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo.secure");
             Properties properties= new Properties();
             properties.load(in);
 
@@ -89,7 +89,7 @@ public class ArcDAO {
         Connection conn = null;
         PreparedStatement ps = null;
         try{
-            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo");
+            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo.secure");
             Properties properties= new Properties();
             properties.load(in);
 
@@ -117,7 +117,7 @@ public class ArcDAO {
         PreparedStatement ps = null;
 
         try{
-            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo");
+            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo.secure");
             Properties properties= new Properties();
             properties.load(in);
 
