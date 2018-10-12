@@ -1,8 +1,9 @@
 package my.examples.arc.dao;
 
+import my.examples.arc.dto.ArcGdsAddDto;
 import my.examples.arc.dto.ArcListDTO;
+import my.examples.arc.dto.ArcWriteDto;
 
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -59,4 +60,62 @@ public class ArcDAO {
         }
         return list;
     }
+
+    public int addArc(ArcGdsAddDto arcGdsAddDto){
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try{
+            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo");
+            Properties properties= new Properties();
+            properties.load(in);
+
+            String url = String.format("jdbc:mysql://%s/%s",properties.getProperty("host"), properties.getProperty("database"));
+
+            conn = DbUtil.connect(url, properties);
+
+            String sql = "insert into inv_gds_lst(igl_idx, gds_cd, prf_rto, cms) values (null, ?, ?, ?)";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, arcGdsAddDto.getGdsCd());
+            ps.setLong(2, arcGdsAddDto.getPrfRto());
+            ps.setFloat(3, arcGdsAddDto.getCms());
+            count = ps.executeUpdate();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            DbUtil.close(conn,ps);
+        }
+        return count;
+    }
+
+    public int writeArc(ArcWriteDto arcWriteDto){
+        int count = 0;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try{
+            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo");
+            Properties properties= new Properties();
+            properties.load(in);
+
+            String url = String.format("jdbc:mysql://%s/%s",properties.getProperty("host"), properties.getProperty("database"));
+
+            conn = DbUtil.connect(url, properties);
+
+            String sql = "insert into my_inv_lst(my_idx, id, gds_cd, inv_prod, my_inv_prc) values (null, ?, ?, ?, ?)";
+            ps = conn.prepareStatement(sql);
+
+            ps.setString(1, arcWriteDto.getId());
+            ps.setInt(2, arcWriteDto.getGdsCd());
+            ps.setInt(3, arcWriteDto.getInvestPeriod());
+            ps.setDouble(4, arcWriteDto.getInvestPrice());
+
+            count = ps.executeUpdate();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }finally {
+            DbUtil.close(conn,ps);
+        }
+        return count;
+    }
 }
+
