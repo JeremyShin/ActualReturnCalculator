@@ -58,7 +58,7 @@ cmake-build-release/
 
 # IntelliJ
 out/
-ARC/src/resources
+src/resources
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -101,7 +101,11 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
+<<<<<<< HEAD
 
+=======
+# mysql secure file
+>>>>>>> develop
 *.secure
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
