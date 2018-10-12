@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/list")
-public class ARCListServlet extends HttpServlet {
+public class ArcListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

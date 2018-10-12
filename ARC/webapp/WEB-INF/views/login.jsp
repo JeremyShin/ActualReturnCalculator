@@ -28,7 +28,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse01">
             <ul class="nav navbar-nav">
-                <li><a href="main.jsp>"메인</li></li>
+                <li><a href="main.jsp">메인</a></li>
                 <li><a href="bbs.jsp">게시판</a></li>
             </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -47,7 +47,7 @@
     <div class="container">
         <div class="col-lg-4"></div>
         <div class="jumbotron" style="padding-top: 20px;">
-            <form method="post" action="loginAction.jsp">
+            <form method="post" action="/loginAction">
                 <h3 style="text-align: center;">로그인화면</h3>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20">

@@ -69,7 +69,7 @@ public class ArcDAO {
         PreparedStatement ps;
         ResultSet rs;
         try{
-        String sql = "SELECT id FROM member WHERE id = ?";
+        String sql = "SELECT id, pw FROM member WHERE id = ?";
         ps = conn.prepareStatement(sql);
         rs = ps.executeQuery();
 

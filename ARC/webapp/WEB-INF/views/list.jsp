@@ -13,7 +13,7 @@
     <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>투자리스트</title>
+    <title>나의 투자리스트</title>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -29,7 +29,7 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse01">
         <ul class="nav navbar-nav">
-            <li><a href="main.jsp>"메인</li></li>
+            <li><a href="main.jsp">메인</a></li>
             <li><a href="bbs.jsp">게시판</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -45,6 +45,52 @@
         </ul>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+                <thead>
+                    <tr>
+                        <th style="background-color: #eeeeee; text-align: center;">번호</th>
+                        <th style="background-color: #eeeeee; text-align: center;">상품이름</th>
+                        <th style="background-color: #eeeeee; text-align: center;">기간(개월)</th>
+                        <th style="background-color: #eeeeee; text-align: center;">수익률(세전)</th>
+                        <th style="background-color: #eeeeee; text-align: center;">투자금액</th>
+                        <th style="background-color: #eeeeee; text-align: center;">수익금(세전)</th>
+                        <th style="background-color: #eeeeee; text-align: center;">세금</th>
+                        <th style="background-color: #eeeeee; text-align: center;">수수료</th>
+                        <th style="background-color: #eeeeee; text-align: center;">예상총수익금</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>상품1</td>
+                        <td>9</td>
+                        <td>30.3%</td>
+                        <td>만원</td>
+                        <td>삼만원</td>
+                        <td>10%</td>
+                        <td>오천원</td>
+                        <td>이만이천원</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>상품2</td>
+                        <td>6</td>
+                        <td>50.1%</td>
+                        <td>만원</td>
+                        <td>팔만원</td>
+                        <td>10%</td>
+                        <td>오천원</td>
+                        <td>육만칠천원</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="write.jsp" class="btn btn-primary pull-right">투자등록</a>
+        </div>
+    </div>
 
 <h1>투자 리스트</h1>
 <c:forEach items="${requestScope.myGoodsList}" var="goodslist">
