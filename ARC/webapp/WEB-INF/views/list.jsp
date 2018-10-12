@@ -84,7 +84,7 @@
                         <td>팔만원</td>
                         <td>10%</td>
                         <td>오천원</td>
-                        <td>육만칠천원</td>
+                        <td>팔만칠천원</td>
                     </tr>
                 </tbody>
             </table>
