@@ -2,10 +2,10 @@ package my.examples.arc.dto;
 
 public class ArcGdsAddDto {
     private int gdsCd;
-    private Long prfRto;
+    private float prfRto;
     private float cms;
 
-    public ArcGdsAddDto(int gdsCd, Long prfRto, float cms) {
+    public ArcGdsAddDto(int gdsCd, Float prfRto, float cms) {
         this.gdsCd = gdsCd;
         this.prfRto = prfRto;
         this.cms = cms;
@@ -19,11 +19,11 @@ public class ArcGdsAddDto {
         this.gdsCd = gdsCd;
     }
 
-    public Long getPrfRto() {
+    public Float getPrfRto() {
         return prfRto;
     }
 
-    public void setPrfRto(Long prfRto) {
+    public void setPrfRto(Float prfRto) {
         this.prfRto = prfRto;
     }
 
