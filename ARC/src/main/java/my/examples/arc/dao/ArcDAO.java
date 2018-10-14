@@ -31,26 +31,38 @@ public class ArcDAO {
             String url = String.format("jdbc:mysql://%s/%s",properties.getProperty("host"), properties.getProperty("database"));
 
             conn = DbUtil.connect(url, properties);
-            String sql = "select case when a.gds_cd=1 then 'sangpum1'\n" +
-                    "\twhen a.gds_cd=2 then 'sangpum2'\n" +
-                    "\twhen a.gds_cd=3 then 'sangpum3'\n" +
-                    "\twhen a.gds_cd=4 then 'sangpum4'\n" +
-                    "\t\tEND as '상품코드', \n" +
-                    "\ta.inv_prod as '투자기간(개월)',\n" +
-                    "\tb.prf_rto as '수익률', \n" +
-                    "\ta.my_inv_prc as '투자금액'\n" +
-                    "from my_inv_lst a, inv_gds_lst b \n" +
-                    "where a.gds_cd = b.gds_cd";
-            ps = conn.prepareStatement(sql);
+            String sql1 = "set @num:=0";
+            String sql2 =
+                    "select @num:=@num+1 as number,\n" +
+                            "\tgm.gds_nm,\n" +
+                            "\tmil.inv_prod,\n" +
+                            "\tigl.prf_rto,\n" +
+                            "\tmil.my_inv_prc ,\n" +
+                            "\tmil.my_inv_prc*igl.prf_rto*mil.inv_prod as price,\n" +
+                            "\t'8%' as tax,\n" +
+                            "\tigl.cms,\n" +
+                            "\t(my_inv_prc+my_inv_prc*0.08)-igl.cms as realPrice\n" +
+                            "\tfrom gds_mst gm, my_inv_lst mil, inv_gds_lst igl\n" +
+                            "\twhere igl.gds_cd = mil.gds_cd\n" +
+                            "\tand igl.gds_cd = gm.gds_cd;\n";
+            ps = conn.prepareStatement(sql1);
+            rs = ps.executeQuery();
+            ps = conn.prepareStatement(sql2);
             rs = ps.executeQuery();
 
 
             while (rs.next()) {
                 ArcListDTO arcListDto = new ArcListDTO();
-                arcListDto.setGoodsName(rs.getString(1));
-                arcListDto.setInvestmentPriod(rs.getInt(2));
-                arcListDto.setProfitRatio(rs.getLong(3));
-                arcListDto.setInvestmentPriod(rs.getInt(4));
+
+                arcListDto.setNumber(rs.getInt(1));
+                arcListDto.setGoodsName(rs.getString(2));
+                arcListDto.setInvestmentPeriod(rs.getInt(3));
+                arcListDto.setProfitRatio(rs.getFloat(4));
+                arcListDto.setMyInvestmentPrice(rs.getLong(5));
+                arcListDto.setProfits(rs.getInt(6));
+                arcListDto.setTax(rs.getString(7));
+                arcListDto.setCommisions(rs.getString(8));
+                arcListDto.setRealProfits(rs.getLong(9));
                 list.add(arcListDto);
             }
 
@@ -69,7 +81,7 @@ public class ArcDAO {
         PreparedStatement ps;
         ResultSet rs;
         try{
-        String sql = "SELECT id FROM member WHERE id = ?";
+        String sql = "SELECT id, pw FROM member WHERE id = ?";
         ps = conn.prepareStatement(sql);
         rs = ps.executeQuery();
 

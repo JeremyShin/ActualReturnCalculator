@@ -1,6 +1,6 @@
 package my.examples.arc.dto;
 
-public class ArcLoginDTO {
+public class    ArcLoginDTO {
     private int memberIndex;
     private String Id;
     private String name;
