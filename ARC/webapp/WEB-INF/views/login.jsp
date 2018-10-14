@@ -24,12 +24,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="main.jsp">로그인페이지</a>
+            <a class="navbar-brand" href="/login">로그인페이지</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse01">
             <ul class="nav navbar-nav">
-                <li><a href="main.jsp">메인</a></li>
-                <li><a href="bbs.jsp">게시판</a></li>
+                <li><a href="/list">투자상품 리스트</a></li>
+                <li><a href="/write">나의 투자 리스트</a></li>
             </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -38,7 +38,7 @@
                    aria-expanded="false">접속하기<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li class="active"><a href="/login">로그인</a></li>
-                    <li><a href="join.jsp">회원가입</a></li>
+                    <li><a href="/join">회원가입</a></li>
                 </ul>
             </li>
         </ul>

@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css">
     <title>나의 투자리스트</title>
+
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -25,12 +26,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="main.jsp">로그인페이지</a>
+        <a class="navbar-brand" href="/list">투자상품리스트페이지</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse01">
         <ul class="nav navbar-nav">
-            <li><a href="main.jsp">메인</a></li>
-            <li><a href="bbs.jsp">게시판</a></li>
+            <li><a href="/list">투자상품 리스트</a></li>
+            <li><a href="/write">나의 투자 리스트</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -38,8 +39,8 @@
                    data-toggle="dropdown" role="button" aria-haspopup="true"
                    aria-expanded="false">접속하기<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li class="active"><a href="login.jsp">로그인</a></li>
-                    <li><a href="join.jsp">회원가입</a></li>
+                    <li><a href="/login">로그인</a></li>
+                    <li><a href="/join">회원가입</a></li>
                 </ul>
             </li>
         </ul>
@@ -63,40 +64,38 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>상품1</td>
-                        <td>9</td>
-                        <td>30.3%</td>
-                        <td>만원</td>
-                        <td>삼만원</td>
-                        <td>10%</td>
-                        <td>오천원</td>
-                        <td>이만이천원</td>
-                    </tr>
-
-                    <tr>
-                        <td>2</td>
-                        <td>상품2</td>
-                        <td>6</td>
-                        <td>50.1%</td>
-                        <td>만원</td>
-                        <td>팔만원</td>
-                        <td>10%</td>
-                        <td>오천원</td>
-                        <td>팔만칠천원</td>
-                    </tr>
+                    <c:forEach items="${requestScope.myGoodsList}" var="goodslist">
+                        <tr>
+                            <td>${goodslist.number}</td>
+                            <td>${goodslist.goodsName}</td>
+                            <td>${goodslist.investmentPeriod}</td>
+                            <td>${goodslist.profitRatio}</td>
+                            <td>${goodslist.myInvestmentPrice}</td>
+                            <td>${goodslist.profits}</td>
+                            <td>${goodslist.tax}</td>
+                            <td>${goodslist.commisions}</td>
+                            <td>${goodslist.realProfits}</td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
-            <a href="write.jsp" class="btn btn-primary pull-right">투자등록</a>
+            <a href="/write" class="btn btn-primary pull-right">투자등록</a>
         </div>
     </div>
 
-<h1>투자 리스트</h1>
-<c:forEach items="${requestScope.myGoodsList}" var="goodslist">
-    ${goodslist.goodsName}
-    ${goodslist.profitRatio}<br>
-</c:forEach>
+    <%--pagination--%>
+
+    <nav style="text-align:center;">
+        <ul class="pagination pagination-lg">
+            <li><a href="#"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a> </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+            <li><a href="#"><span aria-hidden="true">»</span><span class="sr-only">Previous</span></a> </li>
+        </ul>
+    </nav>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
