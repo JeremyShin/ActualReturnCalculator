@@ -23,12 +23,9 @@ public class ArcGdsAddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 상품 이름, 수익률, 수수료를 검사한다
-        req.setCharacterEncoding("UTF-8");  // 한글 깨
         int gdsCd = Integer.parseInt(req.getParameter("gdsCd"));
-        Long prfRto = Long.parseLong(req.getParameter("prfRto"));
+        Float prfRto = Float.parseFloat(req.getParameter("prfRto"));
         Float cms = Float.parseFloat(req.getParameter("cms"));
-
-
 
         // 상품 이름, 수익률, 수수료를 DB에 저장한다.
         ArcGdsAddDto arcGdsAddDto = new ArcGdsAddDto(gdsCd, prfRto, cms);

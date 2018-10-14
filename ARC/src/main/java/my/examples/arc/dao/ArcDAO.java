@@ -113,7 +113,7 @@ public class ArcDAO {
             String sql = "insert into inv_gds_lst(igl_idx, gds_cd, prf_rto, cms) values (null, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, arcGdsAddDto.getGdsCd());
-            ps.setLong(2, arcGdsAddDto.getPrfRto());
+            ps.setFloat(2, arcGdsAddDto.getPrfRto());
             ps.setFloat(3, arcGdsAddDto.getCms());
             count = ps.executeUpdate();
         }catch (Exception ex){
