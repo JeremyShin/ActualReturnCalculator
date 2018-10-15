@@ -52,13 +52,13 @@
             <form method="post" action="/write">
                 <h3 style="text-align: center;">상품 투자</h3>
                 <div class="form-group">
-                    <input type="number" class="form-control" placeholder="상품코드" name="gdsCd" min="0">
+                    <input type="number" class="form-control" placeholder="상품코드" name="goodsCode" min="0">
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" placeholder="투자금액" name="investPrice" min="1">
+                    <input type="number" class="form-control" placeholder="투자금액" name="investmentPrice" min="1">
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" placeholder="투자기간" name="investPeriod" min="1">
+                    <input type="number" class="form-control" placeholder="투자기간" name="investmentPeriod" min="1">
                 </div>
                 <input type="submit" class="btn btn-primary form-control" value="투자하기">
             </form>

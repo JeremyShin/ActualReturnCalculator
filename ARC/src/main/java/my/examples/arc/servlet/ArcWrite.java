@@ -1,7 +1,7 @@
 package my.examples.arc.servlet;
 
 import my.examples.arc.dao.ArcDAO;
-import my.examples.arc.dto.ArcWriteDto;
+import my.examples.arc.dto.ArcWriteDTO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/write")
-public class ArcWriteServlet extends HttpServlet {
+public class ArcWrite extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // jsp에 포워딩
@@ -31,7 +31,7 @@ public class ArcWriteServlet extends HttpServlet {
         int investPeriod = Integer.parseInt(req.getParameter("investPeriod"));
 
         // 상품, 투자 금액과 투자 기간을 DB에 저장한다.
-        ArcWriteDto arcWriteDto = new ArcWriteDto(id, gdsCd, investPeriod, investPrice);
+        ArcWriteDTO arcWriteDto = new ArcWriteDTO(id, gdsCd, investPeriod, investPrice);
         ArcDAO arcDAO = new ArcDAO();
         arcDAO.writeArc(arcWriteDto);
 

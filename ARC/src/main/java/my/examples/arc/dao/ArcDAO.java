@@ -1,9 +1,8 @@
 package my.examples.arc.dao;
 
-import my.examples.arc.dto.ArcGdsAddDto;
+import my.examples.arc.dto.ArcGdsAddDTO;
 import my.examples.arc.dto.ArcListDTO;
-import my.examples.arc.dto.ArcWriteDto;
-import my.examples.arc.dao.DbUtil;
+import my.examples.arc.dto.ArcWriteDTO;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -67,7 +66,7 @@ public class ArcDAO {
             }
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            throw new RuntimeException("디비오류"+ex.toString());
         } finally {
             DbUtil.close(conn, ps, rs);
         }
@@ -81,6 +80,10 @@ public class ArcDAO {
         PreparedStatement ps;
         ResultSet rs;
         try{
+            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo.secure");
+            Properties properties= new Properties();
+            properties.load(in);
+
         String sql = "SELECT id, pw FROM member WHERE id = ?";
         ps = conn.prepareStatement(sql);
         rs = ps.executeQuery();
@@ -97,7 +100,7 @@ public class ArcDAO {
         return -2; //DB오류.
       }
 
-    public int addArc(ArcGdsAddDto arcGdsAddDto){
+    public int addArc(ArcGdsAddDTO arcGdsAddDto){
         int count = 0;
         Connection conn = null;
         PreparedStatement ps = null;
@@ -112,9 +115,9 @@ public class ArcDAO {
 
             String sql = "insert into inv_gds_lst(igl_idx, gds_cd, prf_rto, cms) values (null, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, arcGdsAddDto.getGdsCd());
-            ps.setFloat(2, arcGdsAddDto.getPrfRto());
-            ps.setFloat(3, arcGdsAddDto.getCms());
+            ps.setInt(1, arcGdsAddDto.getGoodsCode());
+            ps.setFloat(2, arcGdsAddDto.getProfitRatio());
+            ps.setFloat(3, arcGdsAddDto.getCommisions());
             count = ps.executeUpdate();
         }catch (Exception ex){
             ex.printStackTrace();
@@ -124,7 +127,7 @@ public class ArcDAO {
         return count;
     }
 
-    public int writeArc(ArcWriteDto arcWriteDto){
+    public int writeArc(ArcWriteDTO arcWriteDto){
         int count = 0;
         Connection conn = null;
         PreparedStatement ps = null;
@@ -142,9 +145,9 @@ public class ArcDAO {
             ps = conn.prepareStatement(sql);
 
             ps.setString(1, arcWriteDto.getId());
-            ps.setInt(2, arcWriteDto.getGdsCd());
-            ps.setInt(3, arcWriteDto.getInvestPeriod());
-            ps.setDouble(4, arcWriteDto.getInvestPrice());
+            ps.setInt(2, arcWriteDto.getGoodsCode());
+            ps.setInt(3, arcWriteDto.getInvestmentPeriod());
+            ps.setDouble(4, arcWriteDto.getInvestmentPrice());
 
             count = ps.executeUpdate();
         }catch (Exception ex){

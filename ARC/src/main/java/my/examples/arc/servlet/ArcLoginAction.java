@@ -9,18 +9,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/loginAction")
-public class ArcLoginActionServlet extends HttpServlet {
+public class ArcLoginAction extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //ID/password가맞는지확인.
         ArcDAO arcDao = new ArcDAO();
+        ArcLoginDTO arcLoginDTO = new ArcLoginDTO();
+        PrintWriter out = resp.getWriter();
 
+        int result = arcDao.login(arcLoginDTO.getId(), arcLoginDTO.getPassword());out.println("<script>alert('hello!'); location.href='/list';</script>");
+
+        if(result == 1) {
+            out.println("<script>alert('hello!'); location.href='/list';</script>");
+        }else {
+            out.println("<script> alert('비밀번호가틀립니다.'); history.back();</script>");
+        }
         //경고메시지.
 
         //맞다면list화면으로리다이렉트.
-        resp.sendRedirect("/list");
+        // resp.sendRedirect("/list");
     }
 }
