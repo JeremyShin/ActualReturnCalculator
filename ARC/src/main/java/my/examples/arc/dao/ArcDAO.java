@@ -60,8 +60,7 @@ public class ArcDAO {
             }
 
         } catch (Exception ex) {
-            //throw new RuntimeException("디비오류"+ex.toString());
-            ex.printStackTrace();
+            throw new RuntimeException("디비오류"+ex.toString());
         } finally {
             DbUtil.close(conn, ps, rs);
         }
