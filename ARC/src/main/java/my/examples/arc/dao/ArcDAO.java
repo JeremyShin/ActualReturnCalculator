@@ -22,14 +22,8 @@ public class ArcDAO {
         ResultSet rs = null;
 
         try {
+            conn = DbUtil.connect();
 
-            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo.secure");
-            Properties properties= new Properties();
-            properties.load(in);
-
-            String url = String.format("jdbc:mysql://%s/%s",properties.getProperty("host"), properties.getProperty("database"));
-
-            conn = DbUtil.connect(url, properties);
             String sql1 = "set @num:=0";
             String sql2 =
                     "select @num:=@num+1 as number,\n" +
@@ -66,7 +60,8 @@ public class ArcDAO {
             }
 
         } catch (Exception ex) {
-            throw new RuntimeException("디비오류"+ex.toString());
+            //throw new RuntimeException("디비오류"+ex.toString());
+            ex.printStackTrace();
         } finally {
             DbUtil.close(conn, ps, rs);
         }
@@ -105,13 +100,7 @@ public class ArcDAO {
         Connection conn = null;
         PreparedStatement ps = null;
         try{
-            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo.secure");
-            Properties properties= new Properties();
-            properties.load(in);
-
-            String url = String.format("jdbc:mysql://%s/%s",properties.getProperty("host"), properties.getProperty("database"));
-
-            conn = DbUtil.connect(url, properties);
+            conn = DbUtil.connect();
 
             String sql = "insert into inv_gds_lst(igl_idx, gds_cd, prf_rto, cms) values (null, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
@@ -133,14 +122,8 @@ public class ArcDAO {
         PreparedStatement ps = null;
 
         try{
-            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo.secure");
-            Properties properties= new Properties();
-            properties.load(in);
+            conn = DbUtil.connect();
 
-            String url = String.format("jdbc:mysql://%s/%s",properties.getProperty("host"), properties.getProperty("database"));
-
-            conn = DbUtil.connect(url, properties);
-          
             String sql = "insert into my_inv_lst(my_idx, id, gds_cd, inv_prod, my_inv_prc) values (null, ?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
 
