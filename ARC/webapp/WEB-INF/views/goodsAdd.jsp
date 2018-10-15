@@ -24,7 +24,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/gdsadd">상품등록페이지</a>
+        <a class="navbar-brand" href="/goodsAdd">상품등록페이지</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse01">
         <ul class="nav navbar-nav">
@@ -49,16 +49,16 @@
     <div class="col-lg-4"></div>
     <div class="col-lg-4">
         <div class="jumbotron" style="padding-top: 20px">
-            <form method="post" action="/gdsadd">
+            <form method="post" action="/goodsAdd">
                 <h3 style="text-align: center;">상품 등록</h3>
                 <div class="form-group">
-                    <input type="number" class="form-control" placeholder="상품코드" name="gdsCd">
+                    <input type="number" class="form-control" placeholder="상품코드" name="goodsCode">
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" placeholder="수익률" name="prfRto" step="any">
+                    <input type="number" class="form-control" placeholder="수익률" name="profitRatio" step="any">
                 </div>
                 <div class="form-group">
-                    <input type="number" class="form-control" placeholder="수수료" name="cms" step="any">
+                    <input type="number" class="form-control" placeholder="수수료" name="commisions" step="any">
                 </div>
                 <input type="submit" class="btn btn-primary form-control" value="등록하기">
             </form>
