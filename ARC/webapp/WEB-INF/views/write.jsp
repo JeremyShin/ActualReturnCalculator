@@ -1,18 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-
-  User: jycs
-  Date: 18. 10. 11
-  Time: 오후 7:29
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <title>login 페이지만들기.</title>
+    <title>ArcWrite</title>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -38,7 +30,7 @@
                    aria-expanded="false">접속하기<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/login">로그인</a></li>
-                    <li class="active"><a href="/join">회원가입</a></li>
+                    <li><a href="/join">회원가입</a></li>
                 </ul>
             </li>
         </ul>

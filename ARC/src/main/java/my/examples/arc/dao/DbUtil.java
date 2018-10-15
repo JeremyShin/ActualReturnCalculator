@@ -7,22 +7,13 @@ import java.sql.*;
 import java.util.Properties;
 
 public class DbUtil {
-    private String host;
-    private String database;
-    private String user;
-    private String password;
-    File file = new File("ARC/out/MysqlInfo.secure");
-
-    public void DbUtil() {
-    }
-
-
-    public static Connection connect(String dbUrl, Properties properties)
-        throws RuntimeException {
+    public static Connection connect() throws RuntimeException {
         Connection conn = null;
         try{
+            PropertiesUtil propertiesUtil = PropertiesUtil.getInstance();
+
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(dbUrl, properties);
+            conn = DriverManager.getConnection(propertiesUtil.getDbUrl(), propertiesUtil.getProperties());
         }catch (Exception ex) {
             throw new RuntimeException(ex);
         }
