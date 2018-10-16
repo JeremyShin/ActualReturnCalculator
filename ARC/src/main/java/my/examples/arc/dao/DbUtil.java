@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.Properties;
 
 public class DbUtil {
+
     private String host;
     private String database;
     private String user;
@@ -21,8 +22,10 @@ public class DbUtil {
         throws RuntimeException {
         Connection conn = null;
         try{
+            PropertiesUtil propertiesUtil = PropertiesUtil.getInstance();
+
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection(dbUrl, properties);
+            conn = DriverManager.getConnection(propertiesUtil.getDbUrl(), propertiesUtil.getProperties());
         }catch (Exception ex) {
             throw new RuntimeException(ex);
         }

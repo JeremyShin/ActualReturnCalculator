@@ -23,14 +23,19 @@ public class ArcGoodsAdd extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 상품 이름, 수익률, 수수료를 검사한다
-        int gdsCd = Integer.parseInt(req.getParameter("goodsCode"));
-        Float prfRto = Float.parseFloat(req.getParameter("profitRatio"));
-        Float cms = Float.parseFloat(req.getParameter("commisions"));
 
-        // 상품 이름, 수익률, 수수료를 DB에 저장한다.
-        ArcGdsAddDTO arcGdsAddDto = new ArcGdsAddDTO(gdsCd, prfRto, cms);
-        ArcDAO arcDAO = new ArcDAO();
-        arcDAO.addArc(arcGdsAddDto);
+        try {
+            int gdsCd = Integer.parseInt(req.getParameter("goodsCode"));
+            Float prfRto = Float.parseFloat(req.getParameter("profitRatio"));
+            Float cms = Float.parseFloat(req.getParameter("commisions"));
+
+            // 상품 이름, 수익률, 수수료를 DB에 저장한다.
+            ArcGdsAddDTO arcGdsAddDto = new ArcGdsAddDTO(gdsCd, prfRto, cms);
+            ArcDAO arcDAO = new ArcDAO();
+            arcDAO.addArc(arcGdsAddDto);
+        }catch (NumberFormatException ex){
+            throw new RuntimeException("유효한 값 입력되지 않았습니다."+ ex.toString());
+        }
 
         // /list로 리다이렉션
         resp.sendRedirect("/list");

@@ -18,9 +18,10 @@ public class ArcLoginAction extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //ID/password가맞는지확인.
         ArcDAO arcDao = new ArcDAO();
+
         PrintWriter out = resp.getWriter();
 
-        int result = arcDao.login(req.getParameter("userId"), req.getParameter("userPassword"));
+        int result = arcDao.login(arcLoginDTO.getId(), arcLoginDTO.getPassword());out.println("<script>alert('hello!'); location.href='/list';</script>");
 
         if(result == 1) {
             out.println("<script>alert('hello!'); location.href='/list';</script>");

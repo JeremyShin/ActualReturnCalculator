@@ -44,10 +44,8 @@ public class ArcDAO {
 
         try {
 
-
-
-
             conn = DbUtil.connect(url, properties);
+
             String sql1 = "set @num:=0";
             String sql2 =
                     "SELECT @num:=@num+1 as number,\n" +
@@ -85,7 +83,7 @@ public class ArcDAO {
             }
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            throw new RuntimeException("디비오류"+ex.toString());
         } finally {
             DbUtil.close(conn, ps, rs);
         }
@@ -103,6 +101,7 @@ public class ArcDAO {
             InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo.secure");
             Properties properties= new Properties();
             properties.load(in);
+
             conn = DbUtil.connect(url, properties);
 
         String sql = "SELECT id, pw FROM member WHERE id = ?";
@@ -121,6 +120,7 @@ public class ArcDAO {
         }
         return -2; //DB오류.
       }
+
 
       public List<Integer> paging() {
         List<Integer> list = new ArrayList<Integer>();
@@ -157,13 +157,7 @@ public class ArcDAO {
         Connection conn = null;
         PreparedStatement ps = null;
         try{
-            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo.secure");
-            Properties properties= new Properties();
-            properties.load(in);
-
-            String url = String.format("jdbc:mysql://%s/%s",properties.getProperty("host"), properties.getProperty("database"));
-
-            conn = DbUtil.connect(url, properties);
+            conn = DbUtil.connect();
 
             String sql = "INSERT INTO inv_gds_lst(igl_idx, gds_cd, prf_rto, cms) VALUES (NULL, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
@@ -185,11 +179,8 @@ public class ArcDAO {
         PreparedStatement ps = null;
 
         try{
-            InputStream in = getClass().getClassLoader().getResourceAsStream("MysqlInfo.secure");
-            Properties properties= new Properties();
-            properties.load(in);
+            conn = DbUtil.connect();
 
-            String url = String.format("jdbc:mysql://%s/%s",properties.getProperty("host"), properties.getProperty("database"));
 
             conn = DbUtil.connect(url, properties);
           
