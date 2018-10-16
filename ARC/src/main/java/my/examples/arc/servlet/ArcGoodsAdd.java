@@ -23,6 +23,7 @@ public class ArcGoodsAdd extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 상품 이름, 수익률, 수수료를 검사한다
+
         try {
             int gdsCd = Integer.parseInt(req.getParameter("goodsCode"));
             Float prfRto = Float.parseFloat(req.getParameter("profitRatio"));
